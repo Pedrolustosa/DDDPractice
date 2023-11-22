@@ -61,9 +61,20 @@ namespace DDDPractice.Data.Repository
 
             return entity;
         }
-        public Task<bool> DeleteAsync(Guid id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result= await _dbSet.SingleOrDefaultAsync(u => u.Id.Equals(id));
+                if(result is null) return false;
+                _dbSet.Remove(result);
+                await _dDDPracticeContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex.GetBaseException();
+            }
         }
     }
 }
