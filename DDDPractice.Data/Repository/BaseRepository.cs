@@ -16,14 +16,28 @@ namespace DDDPractice.Data.Repository
             _dbSet = dDDPracticeContext.Set<T>();
         }
 
-        public Task<IEnumerable<T>> SelectAllAsync()
+        public async Task<IEnumerable<T>> SelectAllAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _dbSet.ToListAsync() ?? throw new ArgumentNullException();
+            }
+            catch (Exception ex)
+            {
+                throw ex.GetBaseException();
+            }
         }
 
-        public Task<T> SelectAsync(Guid id)
+        public async Task<T> SelectAsync(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _dbSet.SingleOrDefaultAsync(u => u.Id.Equals(id)) ?? throw new ArgumentNullException();
+            }
+            catch (Exception ex)
+            {
+                throw ex.GetBaseException();
+            }
         }
 
         public async Task<bool> ExistAsync(Guid id) => await _dbSet.AnyAsync(u => u.Id.Equals(id));
