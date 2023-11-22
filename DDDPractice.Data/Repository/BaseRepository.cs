@@ -38,14 +38,28 @@ namespace DDDPractice.Data.Repository
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw ex.GetBaseException();
             }
             return entity;
         }
 
-        public Task<T> UpdateAsync(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = await _dbSet.SingleOrDefaultAsync(e => e.Id.Equals(entity.Id));
+                if(result is null) throw new NullReferenceException();
+                entity.UpdateAt = DateTime.UtcNow;
+                entity.CreateAt = result.CreateAt;
+                _dDDPracticeContext.Entry(result).CurrentValues.SetValues(entity);
+                await _dDDPracticeContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex.GetBaseException();
+            }
+
+            return entity;
         }
         public Task<bool> DeleteAsync(Guid id)
         {
