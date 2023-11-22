@@ -8,7 +8,7 @@ namespace DDDPractice.Data.Repository
     public class BaseRepository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly DDDPracticeContext _dDDPracticeContext;
-        private DbSet<T> _dbSet;
+        private readonly DbSet<T> _dbSet;
 
         public BaseRepository(DDDPracticeContext dDDPracticeContext)
         {
@@ -25,6 +25,8 @@ namespace DDDPractice.Data.Repository
         {
             throw new NotImplementedException();
         }
+
+        public async Task<bool> ExistAsync(Guid id) => await _dbSet.AnyAsync(u => u.Id.Equals(id));
 
         public async Task<T> InsertAsync(T entity)
         {
@@ -58,9 +60,9 @@ namespace DDDPractice.Data.Repository
             {
                 throw ex.GetBaseException();
             }
-
             return entity;
         }
+
         public async Task<bool> DeleteAsync(Guid id)
         {
             try
