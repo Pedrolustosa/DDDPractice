@@ -1,3 +1,4 @@
+using DDDPractice.Data.Mapping;
 using DDDPractice.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ namespace DDDPractice.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<UserEntity>(new UserMap().Configure);
         }
     }
 }
