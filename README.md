@@ -4,7 +4,7 @@
   [![In Development](https://img.shields.io/badge/Status-Complete%20Project-green)](https://github.com/seu-usuario/seu-projeto)
   ![Project Views](https://komarev.com/ghpvc/?username=seu-usuario&label=Project%20Views&color=brightgreen)
 
-<img style="display: block" src="images\Architecture used.png">
+<img style="display: block" src="images\Architecture_used.png">
 
 ## Tecnologias Utilizadas (Technologies Used)
   <table>
