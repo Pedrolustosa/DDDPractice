@@ -1,4 +1,5 @@
 using System.Net;
+using DDDPractice.Domain.Entities;
 using DDDPractice.Domain.Interfaces.Services.User;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,13 +30,29 @@ namespace DDDPractice.Application.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("{id}", Name = "GetUserById")]
         public async Task<ActionResult> GetById(Guid id)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
             try
             {
                 return Ok(await _userService.GetById(id));
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode((int) HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Post([FromBody] UserEntity userEntity)
+        {
+            if(!ModelState.IsValid) return BadRequest(ModelState);
+            try
+            {
+                var result = await _userService.Post(userEntity);
+                if (result is not null) return Created(new Uri(Url.Link("GetUserById", new { id = result.Id }) ?? string.Empty), result);
+                else return BadRequest();
             }
             catch (ArgumentException e)
             {
