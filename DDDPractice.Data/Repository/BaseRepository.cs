@@ -63,8 +63,7 @@ namespace DDDPractice.Data.Repository
         {
             try
             {
-                var result = await _dbSet.AsNoTracking().SingleOrDefaultAsync(e => e.Id.Equals(entity.Id));
-                if(result is null) throw new NullReferenceException();
+                var result = await _dbSet.SingleOrDefaultAsync(e => e.Id.Equals(entity.Id)) ?? throw new NullReferenceException();
                 entity.UpdateAt = DateTime.UtcNow;
                 entity.CreateAt = result.CreateAt;
                 _dDDPracticeContext.Entry(result).CurrentValues.SetValues(entity);
