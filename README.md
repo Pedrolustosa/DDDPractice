@@ -1,7 +1,7 @@
 # DDDPractice
   [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
   [![Version](https://img.shields.io/badge/Version-1.0-brightgreen)](https://github.com/seu-usuario/seu-projeto)
-  [![In Development](https://img.shields.io/badge/Status-Complete%20Project-green)](https://github.com/seu-usuario/seu-projeto)
+  [![In Development](https://img.shields.io/badge/Status-In%20Development-green)](https://github.com/seu-usuario/seu-projeto)
   ![Project Views](https://komarev.com/ghpvc/?username=seu-usuario&label=Project%20Views&color=brightgreen)
 
 <img style="display: block" src="images\Architecture_used.png">
@@ -62,8 +62,6 @@
     <tr>
       <td>Testes Unitários (Unit Tests)</td>
       <td>
-        <img src="https://img.shields.io/badge/FakeItEasy-green?style=for-the-badge">
-        <img src="https://img.shields.io/badge/FluentAssertions-yellow?style=for-the-badge">
         <img src="https://img.shields.io/badge/xUnit-red?style=for-the-badge">
       </td>
     </tr>
