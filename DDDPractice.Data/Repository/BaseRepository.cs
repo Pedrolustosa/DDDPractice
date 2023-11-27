@@ -20,7 +20,7 @@ namespace DDDPractice.Data.Repository
         {
             try
             {
-                return await _dbSet.ToListAsync() ?? throw new ArgumentNullException();
+                return await _dbSet.AsNoTracking().ToListAsync() ?? throw new ArgumentNullException();
             }
             catch (Exception ex)
             {
@@ -32,7 +32,7 @@ namespace DDDPractice.Data.Repository
         {
             try
             {
-                return await _dbSet.SingleOrDefaultAsync(u => u.Id.Equals(id)) ?? throw new ArgumentNullException();
+                return await _dbSet.AsNoTracking().SingleOrDefaultAsync(u => u.Id.Equals(id)) ?? throw new ArgumentNullException();
             }
             catch (Exception ex)
             {
@@ -40,7 +40,7 @@ namespace DDDPractice.Data.Repository
             }
         }
 
-        public async Task<bool> ExistAsync(Guid id) => await _dbSet.AnyAsync(u => u.Id.Equals(id));
+        public async Task<bool> ExistAsync(Guid id) => await _dbSet.AsNoTracking().AnyAsync(u => u.Id.Equals(id));
 
         public async Task<T> InsertAsync(T entity)
         {
@@ -63,7 +63,7 @@ namespace DDDPractice.Data.Repository
         {
             try
             {
-                var result = await _dbSet.SingleOrDefaultAsync(e => e.Id.Equals(entity.Id));
+                var result = await _dbSet.AsNoTracking().SingleOrDefaultAsync(e => e.Id.Equals(entity.Id));
                 if(result is null) throw new NullReferenceException();
                 entity.UpdateAt = DateTime.UtcNow;
                 entity.CreateAt = result.CreateAt;
@@ -81,7 +81,7 @@ namespace DDDPractice.Data.Repository
         {
             try
             {
-                var result= await _dbSet.SingleOrDefaultAsync(u => u.Id.Equals(id));
+                var result= await _dbSet.AsNoTracking().SingleOrDefaultAsync(u => u.Id.Equals(id));
                 if(result is null) return false;
                 _dbSet.Remove(result);
                 await _dDDPracticeContext.SaveChangesAsync();
