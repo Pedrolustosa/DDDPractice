@@ -8,13 +8,34 @@ namespace DDDPractice.Application.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
+        private readonly IUserService _userService;
+        public UserController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         [HttpGet]
-        public async Task<ActionResult> GetAll([FromServices] IUserService userService)
+        public async Task<ActionResult> GetAll()
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
             try
             {
-                return Ok(await userService.GetAll());
+                return Ok(await _userService.GetAll());
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode((int) HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult> GetById(Guid id)
+        {
+            if(!ModelState.IsValid) return BadRequest(ModelState);
+            try
+            {
+                return Ok(await _userService.GetById(id));
             }
             catch (ArgumentException e)
             {

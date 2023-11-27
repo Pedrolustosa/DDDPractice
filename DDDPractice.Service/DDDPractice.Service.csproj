@@ -3,7 +3,6 @@
   <ItemGroup>
     <ProjectReference Include="..\DDDPractice.Domain\DDDPractice.Domain.csproj" />
     <ProjectReference Include="..\DDDPractice.Data\DDDPractice.Data.csproj" />
-    <ProjectReference Include="..\DDDPractice.CrossCutting\DDDPractice.CrossCutting.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
