@@ -75,5 +75,20 @@ namespace DDDPractice.Application.Controllers
                 return StatusCode((int) HttpStatusCode.InternalServerError, e.Message);
             }
         }
+
+        [HttpDelete]
+        [Route("{id}", Name = "DeleteUserById")]
+        public async Task<ActionResult> Delete(Guid id)
+        {
+            if(!ModelState.IsValid) return BadRequest(ModelState);
+            try
+            {
+                return Ok(await _userService.Delete(id));
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode((int) HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
     }
 }
