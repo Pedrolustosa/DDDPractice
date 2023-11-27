@@ -18,7 +18,7 @@ namespace DDDPractice.Service.Services
             return await _repository.SelectAllAsync();
         }
 
-        public async Task<UserEntity> Get(Guid id)
+        public async Task<UserEntity> GetById(Guid id)
         {
             return await _repository.SelectAsync(id);
         }

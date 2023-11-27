@@ -27,5 +27,20 @@ namespace DDDPractice.Application.Controllers
                 return StatusCode((int) HttpStatusCode.InternalServerError, e.Message);
             }
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult> GetById(Guid id)
+        {
+            if(!ModelState.IsValid) return BadRequest(ModelState);
+            try
+            {
+                return Ok(await _userService.GetById(id));
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode((int) HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
     }
 }
