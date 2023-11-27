@@ -59,5 +59,21 @@ namespace DDDPractice.Application.Controllers
                 return StatusCode((int) HttpStatusCode.InternalServerError, e.Message);
             }
         }
+
+        [HttpPut]
+        public async Task<ActionResult> Put([FromBody] UserEntity userEntity)
+        {
+            if(!ModelState.IsValid) return BadRequest(ModelState);
+            try
+            {
+                var result = await _userService.Put(userEntity);
+                if (result is not null) return Ok(result);
+                else return BadRequest();
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode((int) HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
     }
 }
