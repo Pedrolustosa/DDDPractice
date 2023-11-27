@@ -11,4 +11,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DDDPractice.Domain\DDDPractice.Domain.csproj" />
+    <ProjectReference Include="..\DDDPractice.Service\DDDPractice.Service.csproj" />
+    <ProjectReference Include="..\DDDPractice.CrossCutting\DDDPractice.CrossCutting.csproj" />
+  </ItemGroup>
+
 </Project>
