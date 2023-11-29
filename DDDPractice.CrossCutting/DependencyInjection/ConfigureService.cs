@@ -9,6 +9,7 @@ namespace DDDPractice.CrossCutting.DependencyInjection
     {
         public static IServiceCollection ConfigureDependenciesService(this IServiceCollection services, IConfiguration configuration){
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ILoginService, LoginService>();
             return services;
         }
     }
