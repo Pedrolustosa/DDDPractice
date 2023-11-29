@@ -8,7 +8,6 @@ namespace DDDPractice.Application.Controllers
     [Route("[controller]")]
     public class LoginController : ControllerBase
     {
-
         [HttpPost]
         public async Task<object> Login([FromBody] UserEntity userEntity, [FromServices] ILoginService loginService)
         {
