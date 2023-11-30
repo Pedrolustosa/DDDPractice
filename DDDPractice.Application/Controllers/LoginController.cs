@@ -1,4 +1,5 @@
 using System.Net;
+using DDDPractice.Domain.DTOs;
 using DDDPractice.Domain.Entities;
 using DDDPractice.Domain.Interfaces.Services.User;
 using Microsoft.AspNetCore.Mvc;
@@ -9,17 +10,17 @@ namespace DDDPractice.Application.Controllers
     public class LoginController : ControllerBase
     {
         [HttpPost]
-        public async Task<object> Login([FromBody] UserEntity userEntity, [FromServices] ILoginService loginService)
+        public async Task<object> Login([FromBody] LoginDTO loginDTO, [FromServices] ILoginService loginService)
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
             
-            if(userEntity is null)
-                return BadRequest(userEntity);
+            if(loginDTO is null)
+                return BadRequest(loginDTO);
             
             try
             {
-                var result = await loginService.FindByLogin(userEntity);
+                var result = await loginService.FindByLogin(loginDTO);
                 if(result is not null)
                     return Ok(result);
                 else

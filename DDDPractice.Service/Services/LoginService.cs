@@ -1,6 +1,7 @@
 using DDDPractice.Domain.Entities;
 using DDDPractice.Domain.Repository;
 using DDDPractice.Domain.Interfaces.Services.User;
+using DDDPractice.Domain.DTOs;
 
 #nullable disable
 namespace DDDPractice.Service.Services
@@ -14,13 +15,13 @@ namespace DDDPractice.Service.Services
             _userRepository = userRepository;
         }
 
-        public async Task<object> FindByLogin(UserEntity userEntity)
+        public async Task<object> FindByLogin(LoginDTO loginDTO)
         {
-            var baseUser = new UserEntity();
-            if(baseUser is not null && !string.IsNullOrWhiteSpace(userEntity.Email))
-                return await _userRepository.FindByLogin(userEntity.Email);
+            var baseUser = new LoginDTO();
+            if(baseUser is not null && !string.IsNullOrWhiteSpace(loginDTO.Email))
+                return await _userRepository.FindByLogin(loginDTO.Email);
             else
-                throw new ArgumentNullException(nameof(userEntity), "Invalid login or not exist");
+                throw new ArgumentNullException(nameof(loginDTO), "Invalid login or not exist");
         }
     }
 }
