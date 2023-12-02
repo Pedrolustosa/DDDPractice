@@ -72,7 +72,7 @@ namespace DDDPractice.Service.Services
             return token;
         }
 
-        private object SuccessObject(DateTime createDate, DateTime expirationDate, string token, LoginDTO loginDTO)
+        private static object SuccessObject(DateTime createDate, DateTime expirationDate, string token, LoginDTO loginDTO)
         {
             return new
             {

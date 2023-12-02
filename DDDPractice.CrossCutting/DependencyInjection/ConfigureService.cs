@@ -1,9 +1,13 @@
+using System.Text;
 using DDDPractice.Domain.Security;
 using DDDPractice.Service.Services;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using DDDPractice.Domain.Interfaces.Services.User;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DDDPractice.CrossCutting.DependencyInjection
 {
@@ -20,6 +24,27 @@ namespace DDDPractice.CrossCutting.DependencyInjection
             new ConfigureFromConfigurationOptions<TokenConfigurations>(
                 configuration.GetSection("TokenConfigurations")).Configure(tokenConfigurations);
             services.AddSingleton(tokenConfigurations);
+            services.AddAuthentication(authOptions => {
+                authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(option =>
+            {
+                option.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuer = tokenConfigurations.Issuer,
+                    ValidAudience = tokenConfigurations.Audience,
+                    IssuerSigningKey = signingConfigurations.Key,
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
+            services.AddAuthorization(auth => {
+                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                    .RequireAuthenticatedUser().Build());
+            });
             return services;
         }
     }
