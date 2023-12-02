@@ -10,6 +10,8 @@ namespace DDDPractice.Domain.Entities
             ValidateUser(name, email);
         }
 
+        public UserEntity(){ }
+
         private void ValidateUser(string name, string email)
         {
             DomainExceptionValidation.When(name is null || name.Length <= 0, "The Name must not be null or lenght less than or equal to 0 characters");
