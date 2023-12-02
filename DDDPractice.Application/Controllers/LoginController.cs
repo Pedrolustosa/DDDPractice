@@ -2,6 +2,7 @@ using System.Net;
 using DDDPractice.Domain.DTOs;
 using DDDPractice.Domain.Entities;
 using DDDPractice.Domain.Interfaces.Services.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DDDPractice.Application.Controllers
@@ -9,6 +10,7 @@ namespace DDDPractice.Application.Controllers
     [Route("[controller]")]
     public class LoginController : ControllerBase
     {
+        [AllowAnonymous]
         [HttpPost]
         public async Task<object> Login([FromBody] LoginDTO loginDTO, [FromServices] ILoginService loginService)
         {

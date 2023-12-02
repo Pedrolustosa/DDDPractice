@@ -1,6 +1,7 @@
 using System.Net;
 using DDDPractice.Domain.Entities;
 using DDDPractice.Domain.Interfaces.Services.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DDDPractice.Application.Controllers
@@ -15,6 +16,7 @@ namespace DDDPractice.Application.Controllers
             _userService = userService;
         }
 
+        [Authorize("Bearer")]
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
@@ -29,6 +31,7 @@ namespace DDDPractice.Application.Controllers
             }
         }
 
+        [Authorize("Bearer")]
         [HttpGet]
         [Route("{id}", Name = "GetUserById")]
         public async Task<ActionResult> GetById(Guid id)
@@ -44,6 +47,7 @@ namespace DDDPractice.Application.Controllers
             }
         }
 
+        [Authorize("Bearer")]
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] UserEntity userEntity)
         {
@@ -60,6 +64,7 @@ namespace DDDPractice.Application.Controllers
             }
         }
 
+        [Authorize("Bearer")]
         [HttpPut]
         public async Task<ActionResult> Put([FromBody] UserEntity userEntity)
         {
@@ -76,6 +81,7 @@ namespace DDDPractice.Application.Controllers
             }
         }
 
+        [Authorize("Bearer")]
         [HttpDelete]
         [Route("{id}", Name = "DeleteUserById")]
         public async Task<ActionResult> Delete(Guid id)
