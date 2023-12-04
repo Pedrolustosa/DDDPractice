@@ -7,8 +7,8 @@ namespace DDDPractice.Domain.Interfaces.Services.User
     {
         Task<UserDto> GetById(Guid id);
         Task<IEnumerable<UserDto>> GetAll();
-        Task<UserDtoCreateResult> Post(UserDto userEntity);
-        Task<UserDtoUpdateResult> Put(UserDto userEntity);
+        Task<UserDtoCreateResult> Post(UserDtoCreate userEntity);
+        Task<UserDtoUpdateResult> Put(UserDtoUpdate userEntity);
         Task<bool> Delete(Guid id);
     }
 }

@@ -49,7 +49,7 @@ namespace DDDPractice.Application.Controllers
 
         [Authorize("Bearer")]
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] UserDto userEntity)
+        public async Task<ActionResult> Post([FromBody] UserDtoCreate userEntity)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
             try
@@ -66,7 +66,7 @@ namespace DDDPractice.Application.Controllers
 
         [Authorize("Bearer")]
         [HttpPut]
-        public async Task<ActionResult> Put([FromBody] UserDto userEntity)
+        public async Task<ActionResult> Put([FromBody] UserDtoUpdate userEntity)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
             try
