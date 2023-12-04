@@ -30,7 +30,7 @@ namespace DDDPractice.Service.Services
             return _iMapper.Map<UserDto>(entity);
         }
 
-        public async Task<UserDtoCreateResult> Post(UserDto userEntity)
+        public async Task<UserDtoCreateResult> Post(UserDtoCreate userEntity)
         {
             var model = _iMapper.Map<UserModel>(userEntity); 
             var entity = _iMapper.Map<UserEntity>(model);
@@ -38,7 +38,7 @@ namespace DDDPractice.Service.Services
             return _iMapper.Map<UserDtoCreateResult>(result);;
         }
 
-        public async Task<UserDtoUpdateResult> Put(UserDto userEntity)
+        public async Task<UserDtoUpdateResult> Put(UserDtoUpdate userEntity)
         {
             var model = _iMapper.Map<UserModel>(userEntity); 
             var entity = _iMapper.Map<UserEntity>(model);

@@ -1,15 +1,12 @@
-using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 namespace DDDPractice.Domain.DTOs.User
 {
     public class UserDto
     {
-        [Required]
-        public string Email { get; set; }
-
-        [Required]
-        [EmailAddress]
+        public Guid Id { get; set; }
         public string Name { get; set; }
+        public string Email { get; set; }
+        public DateTime CreateAt { get; set; }
     }
 }
