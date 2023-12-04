@@ -1,19 +1,14 @@
 using AutoMapper;
-using DDDPractice.Service.Services;
 using DDDPractice.CrossCutting.Mappings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using DDDPractice.Domain.Interfaces.Services.User;
 
 namespace DDDPractice.CrossCutting.DependencyInjection
 {
-    public static class ConfigureService
+    public static class ConfigureMappings
     {
-        public static IServiceCollection ConfigureDependenciesService(this IServiceCollection services, IConfiguration configuration){
-            //Services
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<ILoginService, LoginService>();
-            
+        public static IServiceCollection ConfigureDependenciesMappings(this IServiceCollection services, IConfiguration configuration)
+        {
             //Mappings
             var config = new MapperConfiguration(cfg => {
                 cfg.AddProfile(new DtoToModelProfile());
@@ -22,7 +17,6 @@ namespace DDDPractice.CrossCutting.DependencyInjection
             });
             IMapper iMapper = config.CreateMapper();
             services.AddSingleton(iMapper);
-
             return services;
         }
     }

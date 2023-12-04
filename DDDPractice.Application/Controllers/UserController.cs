@@ -1,6 +1,6 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using DDDPractice.Domain.Entities;
+using DDDPractice.Domain.DTOs.User;
 using Microsoft.AspNetCore.Authorization;
 using DDDPractice.Domain.Interfaces.Services.User;
 
@@ -49,7 +49,7 @@ namespace DDDPractice.Application.Controllers
 
         [Authorize("Bearer")]
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] UserEntity userEntity)
+        public async Task<ActionResult> Post([FromBody] UserDto userEntity)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
             try
@@ -66,7 +66,7 @@ namespace DDDPractice.Application.Controllers
 
         [Authorize("Bearer")]
         [HttpPut]
-        public async Task<ActionResult> Put([FromBody] UserEntity userEntity)
+        public async Task<ActionResult> Put([FromBody] UserDto userEntity)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
             try
