@@ -1,9 +1,9 @@
 using DDDPractice.Data.Context;
-using DDDPractice.Data.Implementations;
 using DDDPractice.Data.Repository;
 using DDDPractice.Domain.Interfaces;
 using DDDPractice.Domain.Repository;
 using Microsoft.EntityFrameworkCore;
+using DDDPractice.Data.Implementations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

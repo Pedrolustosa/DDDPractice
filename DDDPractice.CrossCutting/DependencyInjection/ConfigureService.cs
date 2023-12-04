@@ -1,13 +1,12 @@
-using System.Text;
 using DDDPractice.Domain.Security;
 using DDDPractice.Service.Services;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using DDDPractice.Domain.Interfaces.Services.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 
 namespace DDDPractice.CrossCutting.DependencyInjection
 {

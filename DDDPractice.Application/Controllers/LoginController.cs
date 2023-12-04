@@ -1,9 +1,8 @@
 using System.Net;
 using DDDPractice.Domain.DTOs;
-using DDDPractice.Domain.Entities;
-using DDDPractice.Domain.Interfaces.Services.User;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using DDDPractice.Domain.Interfaces.Services.User;
 
 namespace DDDPractice.Application.Controllers
 {
