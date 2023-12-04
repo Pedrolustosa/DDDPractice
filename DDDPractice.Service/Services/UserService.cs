@@ -37,6 +37,5 @@ namespace DDDPractice.Service.Services
         {
             return await _repository.DeleteAsync(id);
         }
-
     }
 }
