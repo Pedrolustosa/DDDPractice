@@ -1,13 +1,14 @@
+using DDDPractice.Domain.DTOs.User;
 using DDDPractice.Domain.Entities;
 
 namespace DDDPractice.Domain.Interfaces.Services.User
 {
     public interface IUserService
     {
-        Task<UserEntity> GetById(Guid id);
-        Task<IEnumerable<UserEntity>> GetAll();
-        Task<UserEntity> Post(UserEntity userEntity);
-        Task<UserEntity> Put(UserEntity userEntity);
+        Task<UserDto> GetById(Guid id);
+        Task<IEnumerable<UserDto>> GetAll();
+        Task<UserDtoCreateResult> Post(UserDto userEntity);
+        Task<UserDtoUpdateResult> Put(UserDto userEntity);
         Task<bool> Delete(Guid id);
     }
 }

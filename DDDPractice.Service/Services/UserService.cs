@@ -1,36 +1,49 @@
+using AutoMapper;
+using DDDPractice.Domain.DTOs.User;
 using DDDPractice.Domain.Entities;
 using DDDPractice.Domain.Interfaces;
 using DDDPractice.Domain.Interfaces.Services.User;
+using DDDPractice.Domain.Models;
 
 namespace DDDPractice.Service.Services
 {
     public class UserService : IUserService
     {
         private readonly IRepository<UserEntity> _repository;
+        private readonly IMapper _iMapper;
 
-        public UserService(IRepository<UserEntity> repository)
+        public UserService(IRepository<UserEntity> repository, IMapper iMapper)
         {
             _repository = repository;
+            _iMapper = iMapper;
         }
 
-        public async Task<IEnumerable<UserEntity>> GetAll()
+        public async Task<IEnumerable<UserDto>> GetAll()
         {
-            return await _repository.SelectAllAsync();
+            var listEntity = await _repository.SelectAllAsync();
+            return _iMapper.Map<IEnumerable<UserDto>>(listEntity);
         }
 
-        public async Task<UserEntity> GetById(Guid id)
+        public async Task<UserDto> GetById(Guid id)
         {
-            return await _repository.SelectAsync(id);
+            var entity = await _repository.SelectAsync(id);
+            return _iMapper.Map<UserDto>(entity);
         }
 
-        public async Task<UserEntity> Post(UserEntity userEntity)
+        public async Task<UserDtoCreateResult> Post(UserDto userEntity)
         {
-            return await _repository.InsertAsync(userEntity);
+            var model = _iMapper.Map<UserModel>(userEntity); 
+            var entity = _iMapper.Map<UserEntity>(model);
+            var result = await _repository.InsertAsync(entity);
+            return _iMapper.Map<UserDtoCreateResult>(result);;
         }
 
-        public async Task<UserEntity> Put(UserEntity userEntity)
+        public async Task<UserDtoUpdateResult> Put(UserDto userEntity)
         {
-            return await _repository.UpdateAsync(userEntity);
+            var model = _iMapper.Map<UserModel>(userEntity); 
+            var entity = _iMapper.Map<UserEntity>(model);
+            var result = await _repository.UpdateAsync(entity);
+            return _iMapper.Map<UserDtoUpdateResult>(result);
         }
 
         public async Task<bool> Delete(Guid id)
