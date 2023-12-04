@@ -24,8 +24,8 @@ namespace DDDPractice.Domain.Models
             set { _email = value; }
         }
         
-        private DateTime _createAt;
-        public DateTime CreateAt
+        private DateTime? _createAt;
+        public DateTime? CreateAt
         {
             get { return _createAt; }
             set { _createAt = value == null ? DateTime.UtcNow : value; }
