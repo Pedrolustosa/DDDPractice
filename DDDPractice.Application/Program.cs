@@ -6,8 +6,10 @@ var configuration = builder.Configuration;
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.ConfigureDependenciesJWT(configuration);
 builder.Services.ConfigureDependenciesSwagger(configuration);
 builder.Services.ConfigureDependenciesService(configuration);
+builder.Services.ConfigureDependenciesMappings(configuration);
 builder.Services.ConfigureDependenciesRepository(configuration);
 
 // Configure the HTTP request pipeline.
