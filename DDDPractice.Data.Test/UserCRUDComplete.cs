@@ -39,13 +39,13 @@ namespace DDDPractice.Data.Test
             UserImplementations _repository = new(context);
             UserEntity _entity = new()
             {
-                Name = "Test",
-                Email = "test@test.com",
+                Name = Faker.Internet.Email(),
+                Email = Faker.Name.FullName(),
             };
             var _createdRecord = await _repository.InsertAsync(_entity);
             Assert.NotNull(_createdRecord);
-            Assert.Equal("Test", _createdRecord.Name);
-            Assert.Equal("test@test.com", _createdRecord.Email);
+            Assert.Equal(_entity.Name, _createdRecord.Name);
+            Assert.Equal(_entity.Email, _createdRecord.Email);
             Assert.False(_createdRecord.Id == Guid.Empty);
         }
     }
