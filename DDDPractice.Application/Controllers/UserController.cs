@@ -6,16 +6,30 @@ using DDDPractice.Domain.Interfaces.Services.User;
 
 namespace DDDPractice.Application.Controllers
 {
+    /// <summary>
+    /// The user controller.
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
+        /// <summary>
+        /// The user service.
+        /// </summary>
         private readonly IUserService _userService;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserController"/> class.
+        /// </summary>
+        /// <param name="userService">The user service.</param>
         public UserController(IUserService userService)
         {
             _userService = userService;
         }
 
+        /// <summary>
+        /// Gets the all.
+        /// </summary>
+        /// <returns><![CDATA[A Task<ActionResult>.]]></returns>
         [Authorize("Bearer")]
         [HttpGet]
         public async Task<ActionResult> GetAll()
@@ -31,6 +45,11 @@ namespace DDDPractice.Application.Controllers
             }
         }
 
+        /// <summary>
+        /// Get the by id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns><![CDATA[A Task<ActionResult>.]]></returns>
         [Authorize("Bearer")]
         [HttpGet]
         [Route("{id}", Name = "GetUserById")]
@@ -47,6 +66,11 @@ namespace DDDPractice.Application.Controllers
             }
         }
 
+        /// <summary>
+        /// Post a <see cref="ActionResult"/>.
+        /// </summary>
+        /// <param name="userEntity">The user entity.</param>
+        /// <returns><![CDATA[A Task<ActionResult>.]]></returns>
         [Authorize("Bearer")]
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] UserDtoCreate userEntity)
@@ -64,6 +88,11 @@ namespace DDDPractice.Application.Controllers
             }
         }
 
+        /// <summary>
+        /// Puts a <see cref="ActionResult"/>.
+        /// </summary>
+        /// <param name="userEntity">The user entity.</param>
+        /// <returns><![CDATA[A Task<ActionResult>.]]></returns>
         [Authorize("Bearer")]
         [HttpPut]
         public async Task<ActionResult> Put([FromBody] UserDtoUpdate userEntity)
@@ -81,6 +110,11 @@ namespace DDDPractice.Application.Controllers
             }
         }
 
+        /// <summary>
+        /// Deletes a <see cref="ActionResult"/>.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns><![CDATA[A Task<ActionResult>.]]></returns>
         [Authorize("Bearer")]
         [HttpDelete]
         [Route("{id}", Name = "DeleteUserById")]

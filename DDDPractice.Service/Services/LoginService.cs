@@ -12,13 +12,35 @@ using DDDPractice.Domain.Interfaces.Services.User;
 #nullable disable
 namespace DDDPractice.Service.Services
 {
+    /// <summary>
+    /// The login service.
+    /// </summary>
     public class LoginService : ILoginService
     {
+        /// <summary>
+        /// The user repository.
+        /// </summary>
         private readonly IUserRepository _userRepository;
+        /// <summary>
+        /// The signing configurations.
+        /// </summary>
         private readonly SigningConfigurations _signingConfigurations;
+        /// <summary>
+        /// The token configurations.
+        /// </summary>
         private readonly TokenConfigurations _tokenConfigurations;
+        /// <summary>
+        /// The configuration.
+        /// </summary>
         private readonly IConfiguration _configuration;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginService"/> class.
+        /// </summary>
+        /// <param name="userRepository">The user repository.</param>
+        /// <param name="signingConfigurations">The signing configurations.</param>
+        /// <param name="tokenConfigurations">The token configurations.</param>
+        /// <param name="configuration">The configuration.</param>
         public LoginService(IUserRepository userRepository, SigningConfigurations signingConfigurations, TokenConfigurations tokenConfigurations, IConfiguration configuration)
         {
             _userRepository = userRepository;
@@ -27,6 +49,12 @@ namespace DDDPractice.Service.Services
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// Find the by login.
+        /// </summary>
+        /// <param name="loginDTO">The login DTO.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <returns><![CDATA[A Task<object>.]]></returns>
         public async Task<object> FindByLogin(LoginDTO loginDTO)
         {
             var baseUser = new UserEntity();
@@ -57,6 +85,14 @@ namespace DDDPractice.Service.Services
                 throw new ArgumentNullException(nameof(loginDTO), "Invalid login or not exist");
         }
 
+        /// <summary>
+        /// Creates the token.
+        /// </summary>
+        /// <param name="identity">The identity.</param>
+        /// <param name="createDate">The create date.</param>
+        /// <param name="expirationDate">The expiration date.</param>
+        /// <param name="handler">The handler.</param>
+        /// <returns>A string.</returns>
         private string CreateToken(ClaimsIdentity identity, DateTime createDate, DateTime expirationDate, JwtSecurityTokenHandler handler)
         {
             var securityToken = handler.CreateToken(new SecurityTokenDescriptor
@@ -72,6 +108,14 @@ namespace DDDPractice.Service.Services
             return token;
         }
 
+        /// <summary>
+        /// Success the object.
+        /// </summary>
+        /// <param name="createDate">The create date.</param>
+        /// <param name="expirationDate">The expiration date.</param>
+        /// <param name="token">The token.</param>
+        /// <param name="loginDTO">The login DTO.</param>
+        /// <returns>An object.</returns>
         private static object SuccessObject(DateTime createDate, DateTime expirationDate, string token, LoginDTO loginDTO)
         {
             return new

@@ -4,8 +4,15 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DDDPractice.Data.Mapping
 {
+    /// <summary>
+    /// The user map.
+    /// </summary>
     public class UserMap : IEntityTypeConfiguration<UserEntity>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="builder">The builder.</param>
         public void Configure(EntityTypeBuilder<UserEntity> builder)
         {
             builder.ToTable("User");

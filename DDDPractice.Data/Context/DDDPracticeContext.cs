@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DDDPractice.Data.Context
 {
+    /// <summary>
+    /// The DDD practice context.
+    /// </summary>
     public class DDDPracticeContext : DbContext
     {
         public DDDPracticeContext(DbContextOptions<DDDPracticeContext> dbContextOptions) : base (dbContextOptions) { }
