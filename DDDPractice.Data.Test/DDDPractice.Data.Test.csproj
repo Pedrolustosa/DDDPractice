@@ -9,7 +9,15 @@
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
+    <ItemGroup>
+    <ProjectReference Include="..\DDDPractice.Data\DDDPractice.Data.csproj" />
+    <ProjectReference Include="..\DDDPractice.Domain\DDDPractice.Domain.csproj" />
+    <ProjectReference Include="..\DDDPractice.Service\DDDPractice.Service.csproj" />
+    <ProjectReference Include="..\DDDPractice.CrossCutting\DDDPractice.CrossCutting.csproj" />
+  </ItemGroup>
+
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.1" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
