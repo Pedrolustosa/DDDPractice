@@ -3,8 +3,16 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace DDDPractice.Data.Context
 {
+    /// <summary>
+    /// The context factory.
+    /// </summary>
     public class ContextFactory : IDesignTimeDbContextFactory<DDDPracticeContext>
     {
+        /// <summary>
+        /// Creates the db context.
+        /// </summary>
+        /// <param name="args">The args.</param>
+        /// <returns>A DDDPracticeContext.</returns>
         public DDDPracticeContext CreateDbContext(string[] args)
         {
             //Used to create migrations

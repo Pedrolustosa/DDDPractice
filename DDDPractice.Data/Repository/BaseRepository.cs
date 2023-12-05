@@ -5,17 +5,36 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DDDPractice.Data.Repository
 {
+    /// <summary>
+    /// The base repository.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class BaseRepository<T> : IRepository<T> where T : BaseEntity
     {
+        /// <summary>
+        /// The d dd practice context.
+        /// </summary>
         private readonly DDDPracticeContext _dDDPracticeContext;
+        /// <summary>
+        /// The db set.
+        /// </summary>
         private readonly DbSet<T> _dbSet;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseRepository"/> class.
+        /// </summary>
+        /// <param name="dDDPracticeContext">The d DD practice context.</param>
         public BaseRepository(DDDPracticeContext dDDPracticeContext)
         {
             _dDDPracticeContext = dDDPracticeContext;
             _dbSet = dDDPracticeContext.Set<T>();
         }
 
+        /// <summary>
+        /// Selects the all asynchronously.
+        /// </summary>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <returns><![CDATA[A Task<List<T>>.]]></returns>
         public async Task<IEnumerable<T>> SelectAllAsync()
         {
             try
@@ -28,6 +47,12 @@ namespace DDDPractice.Data.Repository
             }
         }
 
+        /// <summary>
+        /// Selects a <see cref="T"/>. asynchronously.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <returns><![CDATA[A Task<T>.]]></returns>
         public async Task<T> SelectAsync(Guid id)
         {
             try
@@ -40,8 +65,18 @@ namespace DDDPractice.Data.Repository
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns><![CDATA[A Task<bool>.]]></returns>
         public async Task<bool> ExistAsync(Guid id) => await _dbSet.AsNoTracking().AnyAsync(u => u.Id.Equals(id));
 
+        /// <summary>
+        /// Inserts a <see cref="T"/>. asynchronously.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns><![CDATA[A Task<T>.]]></returns>
         public async Task<T> InsertAsync(T entity)
         {
             try
@@ -59,6 +94,12 @@ namespace DDDPractice.Data.Repository
             return entity;
         }
 
+        /// <summary>
+        /// Updates a <see cref="T"/>. asynchronously.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <exception cref="NullReferenceException"></exception>
+        /// <returns><![CDATA[A Task<T>.]]></returns>
         public async Task<T> UpdateAsync(T entity)
         {
             try
@@ -76,6 +117,11 @@ namespace DDDPractice.Data.Repository
             return entity;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns><![CDATA[A Task<bool>.]]></returns>
         public async Task<bool> DeleteAsync(Guid id)
         {
             try

@@ -4,8 +4,17 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace DDDPractice.CrossCutting.DependencyInjection
 {
+    /// <summary>
+    /// The configure swagger.
+    /// </summary>
     public static class ConfigureSwagger
     {
+        /// <summary>
+        /// Configures the dependencies swagger.
+        /// </summary>
+        /// <param name="services">The services.</param>
+        /// <param name="configuration">The configuration.</param>
+        /// <returns>An IServiceCollection.</returns>
         public static IServiceCollection ConfigureDependenciesSwagger(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSwaggerGen(options =>

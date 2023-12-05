@@ -5,8 +5,17 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace DDDPractice.CrossCutting.DependencyInjection
 {
+    /// <summary>
+    /// The configure mappings.
+    /// </summary>
     public static class ConfigureMappings
     {
+        /// <summary>
+        /// Configures the dependencies mappings.
+        /// </summary>
+        /// <param name="services">The services.</param>
+        /// <param name="configuration">The configuration.</param>
+        /// <returns>An IServiceCollection.</returns>
         public static IServiceCollection ConfigureDependenciesMappings(this IServiceCollection services, IConfiguration configuration)
         {
             //Mappings
