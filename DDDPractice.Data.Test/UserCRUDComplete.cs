@@ -2,7 +2,7 @@ using Xunit;
 using DDDPractice.Data.Context;
 using DDDPractice.Domain.Entities;
 using DDDPractice.Data.Implementations;
-using static DDDPractice.Data.Test.BaseTest;
+using static DDDPractice.Data.Test.BaseTestData;
 using Microsoft.Extensions.DependencyInjection;
 
 #nullable disable
@@ -11,7 +11,7 @@ namespace DDDPractice.Data.Test
     /// <summary>
     /// The user CRUD complete.
     /// </summary>
-    public class UserCRUDComplete : BaseTest, IClassFixture<DbTest>
+    public class UserCRUDComplete : BaseTestData, IClassFixture<DbTest>
     {
         /// <summary>
         /// The service provider.
