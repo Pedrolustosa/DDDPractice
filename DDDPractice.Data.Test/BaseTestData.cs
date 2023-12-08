@@ -7,7 +7,7 @@ namespace DDDPractice.Data.Test;
 /// <summary>
 /// The base test.
 /// </summary>
-public abstract class BaseTest
+public abstract class BaseTestData
 {
     public class DbTest : IDisposable
     {
@@ -33,7 +33,7 @@ public abstract class BaseTest
             context?.Database.EnsureCreated();
         }
 
-#pragma warning disable CA1816 // Dispose methods should call SuppressFinalize
+        #pragma warning disable CA1816 // Dispose methods should call SuppressFinalize
         /// <summary>
         /// 
         /// </summary>
