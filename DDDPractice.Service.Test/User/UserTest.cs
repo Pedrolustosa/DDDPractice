@@ -53,8 +53,8 @@ namespace DDDPractice.Service.Test.User
             userDtoUpdate = new UserDtoUpdate()
             {
                 Id = UserId,
-                Name = NameUser,
-                Email = EmailUser,
+                Name = NameUserEdited,
+                Email = EmailUserEdited,
             };
 
             userDtoCreateResult = new UserDtoCreateResult()
@@ -67,8 +67,10 @@ namespace DDDPractice.Service.Test.User
 
             userDtoUpdateResult = new UserDtoUpdateResult()
             {
-                Name = NameUser,
-                Email = EmailUser,
+                Id = UserId,
+                Name = NameUserEdited,
+                Email = EmailUserEdited,
+                UpdateAt = DateTime.UtcNow
             };
         }
     }
