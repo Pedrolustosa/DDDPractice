@@ -13,7 +13,7 @@ namespace DDDPractice.Service.Test.User
         private Mock<IUserService> _userServiceMock;
 
         [Fact]
-        public async Task Get_By_id_Success()
+        public async Task Get_By_id()
         {
             _userServiceMock = new Mock<IUserService>();
             _userServiceMock.Setup(m => m.GetById(UserId)).ReturnsAsync(userDto);
