@@ -12,7 +12,7 @@ namespace DDDPractice.Application.Test.User.WhenRequestUpdate
         private UserController? _userController;
 
         [Fact]
-        public async Task Is_Possible_Invoke_Post_Controller()
+        public async Task Is_Possible_Invoke_Put_Controller()
         {
             var serviceMock = new Mock<IUserService>();
             var name = Faker.Name.FullName();
