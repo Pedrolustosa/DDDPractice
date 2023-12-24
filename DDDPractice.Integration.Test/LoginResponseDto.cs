@@ -1,3 +1,6 @@
+using Newtonsoft.Json;
+
+#nullable disable
 namespace DDDPractice.Integration.Test
 {
     public class LoginResponseDto
