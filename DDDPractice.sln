@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDPractice.Service.Test", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDPractice.Application.Test", "DDDPractice.Application.Test\DDDPractice.Application.Test.csproj", "{7BC7B55D-DA9E-4817-B044-6B1834501D7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDPractice.Integration.Test", "DDDPractice.Integration.Test\DDDPractice.Integration.Test.csproj", "{5FE600EA-73F9-4118-B430-82FC3A80E0AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{7BC7B55D-DA9E-4817-B044-6B1834501D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BC7B55D-DA9E-4817-B044-6B1834501D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BC7B55D-DA9E-4817-B044-6B1834501D7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FE600EA-73F9-4118-B430-82FC3A80E0AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FE600EA-73F9-4118-B430-82FC3A80E0AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FE600EA-73F9-4118-B430-82FC3A80E0AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FE600EA-73F9-4118-B430-82FC3A80E0AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
