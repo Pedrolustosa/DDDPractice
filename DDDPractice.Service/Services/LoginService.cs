@@ -26,10 +26,6 @@ namespace DDDPractice.Service.Services
         /// </summary>
         private readonly SigningConfigurations _signingConfigurations;
         /// <summary>
-        /// The token configurations.
-        /// </summary>
-        private readonly TokenConfigurations _tokenConfigurations;
-        /// <summary>
         /// The configuration.
         /// </summary>
         private readonly IConfiguration _configuration;
@@ -41,11 +37,10 @@ namespace DDDPractice.Service.Services
         /// <param name="signingConfigurations">The signing configurations.</param>
         /// <param name="tokenConfigurations">The token configurations.</param>
         /// <param name="configuration">The configuration.</param>
-        public LoginService(IUserRepository userRepository, SigningConfigurations signingConfigurations, TokenConfigurations tokenConfigurations, IConfiguration configuration)
+        public LoginService(IUserRepository userRepository, SigningConfigurations signingConfigurations, IConfiguration configuration)
         {
             _userRepository = userRepository;
             _signingConfigurations = signingConfigurations;
-            _tokenConfigurations = tokenConfigurations;
             _configuration = configuration;
         }
 
@@ -75,7 +70,7 @@ namespace DDDPractice.Service.Services
                         }
                     );
                     DateTime createDate = DateTime.Now;
-                    DateTime expirationDate = createDate + TimeSpan.FromSeconds(_tokenConfigurations.Seconds);
+                    DateTime expirationDate = createDate + TimeSpan.FromSeconds(Convert.ToInt32(Environment.GetEnvironmentVariable("Seconds")));
                     var handler = new JwtSecurityTokenHandler();
                     var token = CreateToken(identity, createDate, expirationDate, handler);
                     return SuccessObject(createDate, expirationDate, token, loginDTO);
@@ -97,8 +92,8 @@ namespace DDDPractice.Service.Services
         {
             var securityToken = handler.CreateToken(new SecurityTokenDescriptor
             {
-                Issuer = _tokenConfigurations.Issuer,
-                Audience = _tokenConfigurations.Audience,
+                Issuer = Environment.GetEnvironmentVariable("Issuer"),
+                Audience = Environment.GetEnvironmentVariable("Audience"),
                 SigningCredentials = _signingConfigurations.SigningCredentials,
                 Subject = identity,
                 NotBefore = createDate,

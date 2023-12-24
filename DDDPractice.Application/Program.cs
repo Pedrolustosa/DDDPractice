@@ -2,13 +2,14 @@ using DDDPractice.CrossCutting.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+var environment = builder.Environment;
 
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.ConfigureDependenciesJWT(configuration);
 builder.Services.ConfigureDependenciesSwagger(configuration);
-builder.Services.ConfigureDependenciesService(configuration);
+builder.Services.ConfigureDependenciesService(configuration, environment);
 builder.Services.ConfigureDependenciesMappings(configuration);
 builder.Services.ConfigureDependenciesRepository(configuration);
 
