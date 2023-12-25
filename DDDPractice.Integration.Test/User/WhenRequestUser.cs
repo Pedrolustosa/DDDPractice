@@ -32,6 +32,22 @@ namespace DDDPractice.Integration.Test.User
             Assert.Equal(_name, registerPost.Name);
             Assert.Equal(_email, registerPost.Email);
             Assert.True(registerPost.Id != default);
+
+            //Get All
+            response = await client.GetAsync($"{hostApi}users");
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            var jsonResult = await response.Content.ReadAsStringAsync();
+            var listFromJson = JsonConvert.DeserializeObject<IEnumerable<UserDto>>(jsonResult);
+            Assert.NotNull(listFromJson);
+            Assert.True(listFromJson.Count() > 0);
+            Assert.True(listFromJson.Where(r => r.Id == registerPost.Id).Count() == 1);
+
+            var updateUserDto = new UserDtoUpdate()
+            {
+                Id = registerPost.Id,
+                Name = Faker.Name.FullName(),
+                Email = Faker.Internet.Email()
+            };
         }
     }
 }
