@@ -2,6 +2,7 @@ using Xunit;
 using System.Net;
 using Newtonsoft.Json;
 using DDDPractice.Domain.DTOs.User;
+using System.Text;
 
 #nullable disable
 namespace DDDPractice.Integration.Test.User
@@ -48,6 +49,17 @@ namespace DDDPractice.Integration.Test.User
                 Name = Faker.Name.FullName(),
                 Email = Faker.Internet.Email()
             };
+
+            //PUT
+            var stringContent = new StringContent(JsonConvert.SerializeObject(updateUserDto),
+                                    Encoding.UTF8, "application/json");
+            response = await client.PutAsync($"{hostApi}users", stringContent);
+            jsonResult = await response.Content.ReadAsStringAsync();
+            var registerUpdate = JsonConvert.DeserializeObject<UserDtoUpdateResult>(jsonResult);
+
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.NotEqual(registerPost.Name, registerUpdate.Name);
+            Assert.NotEqual(registerPost.Email, registerUpdate.Email);
         }
     }
 }
