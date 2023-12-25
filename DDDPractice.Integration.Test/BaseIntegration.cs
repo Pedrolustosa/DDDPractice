@@ -31,7 +31,7 @@ namespace DDDPractice.Integration.Test
             client = server.CreateClient();
         }
 
-        public async Task AdicionarToken()
+        public async Task AddToken()
         {
             var loginDto = new LoginDTO()
             {

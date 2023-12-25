@@ -23,11 +23,11 @@ namespace DDDPractice.CrossCutting.DependencyInjection
         {
             //Token
             var signingConfigurations = new SigningConfigurations();
-            services.AddSingleton(signingConfigurations);
-            var tokenConfigurations = new TokenConfigurations();
-            new ConfigureFromConfigurationOptions<TokenConfigurations>(
-                configuration.GetSection("TokenConfigurations")).Configure(tokenConfigurations);
-            services.AddSingleton(tokenConfigurations);
+            // services.AddSingleton(signingConfigurations);
+            // var tokenConfigurations = new TokenConfigurations();
+            // new ConfigureFromConfigurationOptions<TokenConfigurations>(
+            //     configuration.GetSection("TokenConfigurations")).Configure(tokenConfigurations);
+            // services.AddSingleton(tokenConfigurations);
             services.AddAuthentication(authOptions => {
                 authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -36,8 +36,8 @@ namespace DDDPractice.CrossCutting.DependencyInjection
             {
                 option.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidIssuer = tokenConfigurations.Issuer,
-                    ValidAudience = tokenConfigurations.Audience,
+                    ValidIssuer = Environment.GetEnvironmentVariable("Issuer"),
+                    ValidAudience = Environment.GetEnvironmentVariable("Audience"),
                     IssuerSigningKey = signingConfigurations.Key,
                     ValidateIssuerSigningKey = true,
                     ValidateLifetime = true,
