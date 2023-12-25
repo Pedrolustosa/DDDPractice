@@ -60,6 +60,15 @@ namespace DDDPractice.Integration.Test.User
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.NotEqual(registerPost.Name, registerUpdate.Name);
             Assert.NotEqual(registerPost.Email, registerUpdate.Email);
+
+            //GET Id
+            response = await client.GetAsync($"{hostApi}users/{registerUpdate.Id}");
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            jsonResult = await response.Content.ReadAsStringAsync();
+            var registerSelected = JsonConvert.DeserializeObject<UserDto>(jsonResult);
+            Assert.NotNull(registerSelected);
+            Assert.Equal(registerSelected.Name, registerUpdate.Name);
+            Assert.Equal(registerSelected.Email, registerUpdate.Email);
         }
     }
 }
