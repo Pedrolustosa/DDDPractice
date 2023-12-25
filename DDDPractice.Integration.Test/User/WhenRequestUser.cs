@@ -69,6 +69,14 @@ namespace DDDPractice.Integration.Test.User
             Assert.NotNull(registerSelected);
             Assert.Equal(registerSelected.Name, registerUpdate.Name);
             Assert.Equal(registerSelected.Email, registerUpdate.Email);
+
+            //DELETE
+            response = await client.DeleteAsync($"{hostApi}users/{registerSelected.Id}");
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+            //GET ID after DELETE
+            response = await client.GetAsync($"{hostApi}users/{registerSelected.Id}");
+            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
     }
 }
